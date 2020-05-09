@@ -1,0 +1,14 @@
+package br.com.kennedy.application;
+
+import br.com.kennedy.boardgame.Position;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Position pos = new Position(3, 5);
+		
+		System.out.println(pos); 
+
+	}
+
+}
