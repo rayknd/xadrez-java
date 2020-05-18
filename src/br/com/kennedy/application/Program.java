@@ -1,7 +1,9 @@
 package br.com.kennedy.application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import br.com.kennedy.chess.ChessException;
 import br.com.kennedy.chess.ChessMatch;
 import br.com.kennedy.chess.ChessPiece;
 import br.com.kennedy.chess.ChessPosition;
@@ -14,18 +16,29 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch();
 		
 		while(true) {
-			//Responsável exibir o tabuleiro
-			UI.printBoard(chessMatch.getPieces());
-			
-			System.out.println();
-			System.out.print("Source: ");
-			ChessPosition source = UI.readChessPosition(sc);
-			
-			System.out.println();
-			System.out.print("Target: ");
-			ChessPosition target = UI.readChessPosition(sc);
-			
-			ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+			try {
+				//limpa a tela
+				UI.clearScreen();
+				
+				//Responsável exibir o tabuleiro
+				UI.printBoard(chessMatch.getPieces());
+				
+				System.out.println();
+				System.out.print("Source: ");
+				ChessPosition source = UI.readChessPosition(sc);
+				
+				System.out.println();
+				System.out.print("Target: ");
+				ChessPosition target = UI.readChessPosition(sc);
+				
+				ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
+			}catch(ChessException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}catch(InputMismatchException e) {
+				System.out.println(e.getMessage());
+				sc.nextLine();
+			}
 		}
 	}
 
