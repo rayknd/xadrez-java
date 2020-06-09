@@ -3,6 +3,7 @@ package br.com.kennedy.application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import br.com.kennedy.chess.ChessMatch;
 import br.com.kennedy.chess.ChessPiece;
 import br.com.kennedy.chess.ChessPosition;
 import br.com.kennedy.chess.Color;
@@ -68,6 +69,13 @@ public class UI {
 			System.out.println();
 		}
 		System.out.println("  a b c d e f g h");
+	}
+	
+	public static void printMatch(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Turn: " + chessMatch.getTurn());
+		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
 	}
 	
 	private static void printPiece(ChessPiece piece, boolean background) {
